@@ -1,0 +1,131 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<style>
+    #switch {
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  overflow: hidden;
+  }
+.btn {
+  float: left;
+  width: 200px;
+  margin: 0 0 2rem 10px;
+  padding: 5px;
+  font-size: 1.6rem;
+  text-align: center;
+  background: #CCC;
+  color: #FFF;
+  border-bottom: 4px solid rgba(0, 0, 0, .2);
+  }
+.btn:hover {
+  opacity: .8;
+  cursor: pointer;
+  }
+.inactive { opacity: .5; }
+.inactive:hover {
+  opacity: .5;
+  cursor: default;
+  }
+.boxDisplay { display: block; }
+.boxNone { display: none; }
+</style>
+
+<div class = "box" style = "margin: 2rem 0rem">
+<h1>
+        以下のコード例のように、このページに画像をPOSTするとJSON形式で
+    </h1>
+        <code>
+            {'url': 'http://127.0.0.1:8000/media/R35TkGquow61sample.jpeg', 'pwd': 'R35TkGquow61'}
+        </code>
+    <h1>
+        以上のレスポンスを返します。
+    </h1>
+        HOMEから直接画像をアップロードして、URLを発行することもできます。
+    </h1>
+</div>
+
+<ul id="switch">
+        <li id="Py">Python</li>
+        <li id="G">Node.js</li>
+</ul>
+
+
+<div id = "Python">
+    <pre class="brush: py">
+        <code class="prettyprint linenums lang-python">
+                import requests
+                import json
+                #POSTするURL設定
+                post_url = "<今表示しているページのURL>"
+                
+                #POSTするファイルの読込
+                files = { "image_file": open('./sample.jpeg', 'rb') }
+                
+                #POST送信
+                response = requests.post(
+                    post_url,
+                    files = files,)
+                
+                print(json.loads(response.text))
+        </code>
+    </pre>
+</div>
+
+<div id = "Go">
+        <pre class="brush: js">
+            <code class="prettyprint linenums lang-python">
+                    var request = require('request');
+                    var fs = require('fs');
+
+                    var url = '<今表示しているページのURL>';
+                    var formData = {
+                        'image_file': fs.createReadStream('./sample.jpeg'),
+                    };
+
+                    request.post({url:url, formData:formData}, function(err, response, body) {
+                        if(err){
+                        console.log(err)
+                        }else{
+                        console.log(body)
+                        };
+                    });
+            </code>
+        </pre>
+    </div>
+
+
+
+<script>
+function clickSwitch() {
+    'use strict';
+    var isA = 0; // 現在地判定
+    var btnA = document.getElementById('Py');
+    var btnB = document.getElementById('G');
+    var divA = document.getElementById('Python');
+    var divB = document.getElementById('Go');
+   
+    function setState(isA) {
+      btnA.className = (isA == 0) ? 'btn inactive' : 'btn'; // Aのとき非表示
+      divA.className = (isA == 0) ? 'boxDisplay' : 'boxNone'; // Aのとき表示
+      btnB.className = (isA == 1) ? 'btn inactive' : 'btn'; // Bのとき非表示
+      divB.className = (isA == 1) ? 'boxDisplay' : 'boxNone'; // Bのとき表示
+    }
+    setState(0);
+   
+    btnA.addEventListener('click', function(){
+      if (isA == 0) return;
+      isA = 0;
+      setState(0);
+    });
+    btnB.addEventListener('click', function(){
+      if (isA == 1) return;
+      isA = 1;
+      setState(1);
+    });
+  };
+  document.addEventListener("DOMContentLoaded", clickSwitch, false);
+</script>
+{% endblock %}

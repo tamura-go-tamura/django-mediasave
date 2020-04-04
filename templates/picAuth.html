@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div style="font-size: 40px; text-align:center;">
+<form method="POST" action="{% url 'search:pic_show' %}"　style = "margin-bottom: 1rem;">
+        {% csrf_token %}
+        <input class="input-content" type="text" name="pic" value={{ picture }} style = "margin-top: 1rem; ">
+        <input class="input-content" type="password" name="pwd" placeholder="パスワードを入力" style = "margin-top: 1rem; ">
+        <div><button type="submit" class="btn-sticky" style = "margin-top: 1rem; ">表示</button></div>
+</form>
+</div>
+{% endblock %}
