@@ -1,5 +1,13 @@
 version: '3'
 services:
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      DOMAINS: 'upload.takopanman.work -> http://django:8080''
+      STAGE: 'production'
   django:
     build:
       context: ./django
@@ -13,7 +21,7 @@ services:
       - DATABASE_PORT=5432
     restart: always
     ports:
-      - 80:8000
+      - "8080"
     volumes:
       - data:/data
       - media:/django/media
