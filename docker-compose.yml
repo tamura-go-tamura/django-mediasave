@@ -15,7 +15,7 @@ services:
       - DATABASE_PORT=5432
     restart: always
     ports:
-      - 80:80
+      - 8080:80
     volumes:
       - data:/data
       - media:/django/media
