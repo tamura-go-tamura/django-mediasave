@@ -14,4 +14,4 @@ COPY . .
 
 CMD ["sh", "start.sh"]
 
-EXPOSE 8000:80
+EXPOSE 80:8000
