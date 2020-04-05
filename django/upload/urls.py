@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.contrib import admin
 
 from django.views.static import serve
@@ -25,7 +25,7 @@ urlpatterns = [
     path('post/', include('post.urls',namespace='post')),
     path('', include('search_pic.urls',namespace='search')),
     path('adminadmin/', admin.site.urls),
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}), 
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}), 
 ]
 
 urlpatterns += staticfiles_urlpatterns()

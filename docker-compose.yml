@@ -16,7 +16,7 @@ services:
       - 80:8000
     volumes:
       - data:/data
-      - media:/media
+      - media:/django/media
     depends_on:
       - db
 
