@@ -6,27 +6,27 @@ services:
       - '80:80'
       - '443:443'
     environment:
-      DOMAINS: 'takopanman.word -> http://django:8000'
+      DOMAINS: 'upload.takopanman.word'
       - STAGE = production
-  django:
-    build:
-      context: ./django
-    image: django:1.0
-    environment:
-      - DJANGO_SETTINGS_MODULE=upload.settings
-      - DATABASE_DB=django
-      - DATABASE_USER=djangoadmin
-      - DATABASE_PASSWORD=adminPassword
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
-    restart: always
-    ports:
-      - 8000:8000
-    volumes:
-      - data:/data
-      - media:/django/media
-    depends_on:
-      - db
+  # django:
+  #   build:
+  #     context: ./django
+  #   image: django:1.0
+  #   environment:
+  #     - DJANGO_SETTINGS_MODULE=upload.settings
+  #     - DATABASE_DB=django
+  #     - DATABASE_USER=djangoadmin
+  #     - DATABASE_PASSWORD=adminPassword
+  #     - DATABASE_HOST=db
+  #     - DATABASE_PORT=5432
+  #   restart: always
+  #   ports:
+  #     - 8000:8000
+  #   volumes:
+  #     - data:/data
+  #     - media:/django/media
+  #   depends_on:
+  #     - db
 
   db:
     image: postgres:11.4-alpine
