@@ -13,3 +13,5 @@ RUN apk del --purge build-base linux-headers python3-dev
 COPY . .
 
 CMD ["sh", "start.sh"]
+
+EXPOSE  8000
