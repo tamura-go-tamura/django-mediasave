@@ -6,7 +6,7 @@ services:
       - '80:80'
       - '443:443'
     environment:
-      - DOMAINS = upload.takopanman.work -> http://django:8080
+      DOMAINS: 'takopanman.word -> http://django:8000'
       - STAGE = production
   django:
     build:
@@ -21,7 +21,7 @@ services:
       - DATABASE_PORT=5432
     restart: always
     ports:
-      - "8080"
+      - 8000:8000
     volumes:
       - data:/data
       - media:/django/media
