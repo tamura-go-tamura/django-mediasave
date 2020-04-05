@@ -6,8 +6,8 @@ services:
       - '80:80'
       - '443:443'
     environment:
-      DOMAINS: 'upload.takopanman.word'
-      - STAGE = production
+      - DOMAINS = upload.takopanman.work
+      - STAGE = 'production'
   # django:
   #   build:
   #     context: ./django
@@ -21,28 +21,28 @@ services:
   #     - DATABASE_PORT=5432
   #   restart: always
   #   ports:
-  #     - 8000:8000
+  #     - "8080"
   #   volumes:
   #     - data:/data
   #     - media:/django/media
   #   depends_on:
   #     - db
 
-  db:
-    image: postgres:11.4-alpine
-    container_name: db
-    restart: always
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=django
-      - POSTGRES_USER=djangoadmin
-      - POSTGRES_PASSWORD=adminPassword
-      - POSTGRES_INITDB_ARGS="--encoding=UTF-8"
-    hostname: db
-    restart: always
+  # db:
+  #   image: postgres:11.4-alpine
+  #   container_name: db
+  #   restart: always
+  #   ports:
+  #     - 5432:5432
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_DB=django
+  #     - POSTGRES_USER=djangoadmin
+  #     - POSTGRES_PASSWORD=adminPassword
+  #     - POSTGRES_INITDB_ARGS="--encoding=UTF-8"
+  #   hostname: db
+  #   restart: always
 
 
 volumes:
