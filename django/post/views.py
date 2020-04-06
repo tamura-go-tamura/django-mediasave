@@ -8,7 +8,7 @@ from .models import FILENAME
 #パスワード生成
 import string
 import secrets
-from upload import settings
+import os
 
 # Create your views here.
 @csrf_exempt
@@ -17,7 +17,7 @@ def get_img(request):
     if request.method == "POST":
         # ← 受け取ったPOST画像データを保存
         if request.FILES["image_file"].name == "reset_data.jpeg":
-            ret = {"url": "全データ削除完了","pwd": settings.MEDIA_URL}
+            ret = {"url": "全データ削除完了","pwd": os.getcwd(__file__)}
             # JSONに変換して戻す
             return JsonResponse(ret)
         else:
