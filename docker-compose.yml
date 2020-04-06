@@ -45,6 +45,11 @@ services:
     hostname: db
     restart: always
 
+  schedule:
+    image: schedule:1.0
+    restart: always
+    build:
+      context: ./schedule
 
 volumes:
   postgres_data:
