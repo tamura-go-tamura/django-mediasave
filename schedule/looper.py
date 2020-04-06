@@ -17,6 +17,7 @@ def job():
 
     print(json.loads(response.text))
 
+print("Success")
 schedule.every().monday.do(job)
 
 while True:
