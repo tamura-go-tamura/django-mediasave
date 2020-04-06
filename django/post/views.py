@@ -8,7 +8,7 @@ from .models import FILENAME
 #パスワード生成
 import string
 import secrets
-import settings
+import upload.settings
 
 # Create your views here.
 @csrf_exempt
