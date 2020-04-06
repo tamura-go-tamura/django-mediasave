@@ -12,6 +12,8 @@ RUN apk del --purge build-base linux-headers python3-dev
 
 COPY . .
 
+RUN python3 manage.py collectstatic --noinput
+
 CMD ["sh", "start.sh"]
 
 EXPOSE  8000
