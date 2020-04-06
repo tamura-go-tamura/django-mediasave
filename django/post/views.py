@@ -17,6 +17,10 @@ def get_img(request):
         # ← 受け取ったPOST画像データを保存
         if request.FILES["image_file"].name == "reset_data.jpeg":
             print("できた!")
+            ret = {"url": request.FILES["image_file"].name,"pwd": "sdf"}
+
+            # JSONに変換して戻す
+            return JsonResponse(ret)
         else:
             pwd = pass_gen()
             res, file_name = save(request.FILES["image_file"], pwd)
