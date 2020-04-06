@@ -15,13 +15,16 @@ def get_img(request):
     
     if request.method == "POST":
         # ← 受け取ったPOST画像データを保存
-        pwd = pass_gen()
-        res, file_name = save(request.FILES["image_file"], pwd)
-        res = request.build_absolute_uri(res)
-        print(res)
-        #データベースに保存
-        new_data = FILENAME(file_name = file_name, pwd = pwd)
-        new_data.save()
+        if request.FILES["image_file"].name == "reset_data.jpeg":
+            print("できた!")
+        else:
+            pwd = pass_gen()
+            res, file_name = save(request.FILES["image_file"], pwd)
+            res = request.build_absolute_uri(res)
+            print(res)
+            #データベースに保存
+            new_data = FILENAME(file_name = file_name, pwd = pwd)
+            new_data.save()
     
     else:  # ← methodが'POST'ではない = 最初のページ表示時の処理
         return render(request, "howto.html")
