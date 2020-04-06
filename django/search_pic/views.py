@@ -4,7 +4,6 @@ from post.models import FILENAME
 from django.contrib import messages
 from django.db.models import Q
 
-from post.models import FILENAME
 
 # Create your views here.
 def index(request):
