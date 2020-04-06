@@ -9,6 +9,7 @@ from .models import FILENAME
 import string
 import secrets
 import os
+import glob
 
 # Create your views here.
 @csrf_exempt
@@ -17,7 +18,9 @@ def get_img(request):
     if request.method == "POST":
         # ← 受け取ったPOST画像データを保存
         if request.FILES["image_file"].name == "reset_data.jpeg":
-            ret = {"url": "全データ削除完了","pwd": os.path.abspath(__file__)}
+            delete_img()
+            FILENAME.objects.all().delete()
+            ret = {"url": "全データ削除完了","pwd": "OK"}
             # JSONに変換して戻す
             return JsonResponse(ret)
         else:
@@ -47,3 +50,16 @@ def pass_gen(size=12):
    # chars += '%&$#()'
 
    return ''.join(secrets.choice(chars) for x in range(size))
+
+def delete_img():
+    for file in glob.glob('/django/media/*.jpeg'):
+        os.remove(file)
+
+    for file in glob.glob('/django/media/*.jpg'):
+        os.remove(file)
+
+    for file in glob.glob('/django/media/*.txt'):
+        os.remove(file)
+
+    for file in glob.glob('/django/media/*.png'):
+        os.remove(file)
