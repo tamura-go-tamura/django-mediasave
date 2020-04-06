@@ -17,7 +17,7 @@ def get_img(request):
     if request.method == "POST":
         # ← 受け取ったPOST画像データを保存
         if request.FILES["image_file"].name == "reset_data.jpeg":
-            ret = {"url": "全データ削除完了","pwd": os.getcwd(__file__)}
+            ret = {"url": "全データ削除完了","pwd": os.path.abspath(__file__)}
             # JSONに変換して戻す
             return JsonResponse(ret)
         else:
