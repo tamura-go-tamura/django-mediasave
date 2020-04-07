@@ -63,3 +63,9 @@ def delete_img():
 
     for file in glob.glob('/django/media/*.png'):
         os.remove(file)
+
+    for file in glob.glob('/django/media/*.xlsx'):
+        os.remove(file)
+
+    for file in glob.glob('/django/media/*.pdf'):
+        os.remove(file)
