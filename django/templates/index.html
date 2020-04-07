@@ -114,7 +114,13 @@
         <button type="submit" class="btn-sticky">検索</button>
     </form>
     </div>
-
+    {% if admin %}
+    <ul>
+        {% for file in files %}
+        <li><a href = "{{ path }}/media/{{ file.pwd }}{{ file.file_name }}">{{ file.file_name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
     <ul>
             {% for file in files %}
             <li><a href = "{{ path }}/auth/?pic={{ file.file_name }}">{{ file.file_name }}</a></li>
@@ -130,6 +136,7 @@
                 </form>
             </div>
     </div>
+    {% endif %}
     {% endblock %}
 
     
