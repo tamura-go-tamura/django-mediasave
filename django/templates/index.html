@@ -139,14 +139,41 @@
     <div class="box" style = "text-align: center; margin-top: 10px;">
     <p>画像をアップロード</p>
                 <form action="{% url 'post:img_get' %}" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="image_file" multiple>
+                    <div id = "drag-drop-area">
+                    <div class="drag-drop-inside">
+                            <p class="drag-drop-info">ここにファイルをドロップ</p>
+                            <p>または</p>
+                    <input type="file" id="fileInput" name="image_file" multiple>
                     {% csrf_token %}
                     <input type="submit">
+                    </div>
+                    </div>
                 </form>
             </div>
     </div>
     {% endif %}
     {% endblock %}
+    <script>
+        var fileArea = document.getElementById('drag-drop-area');
+var fileInput = document.getElementById('fileInput');
+
+
+fileArea.addEventListener('dragover', function(evt){
+  evt.preventDefault();
+  fileArea.classList.add('dragover');
+});
+
+fileArea.addEventListener('dragleave', function(evt){
+    evt.preventDefault();
+    fileArea.classList.remove('dragover');
+});
+fileArea.addEventListener('drop', function(evt){
+    evt.preventDefault();
+    fileArea.classList.remove('dragenter');
+    var files = evt.dataTransfer.files;
+    fileInput.files = files;
+});
+        </script>
 
     
     <script>
