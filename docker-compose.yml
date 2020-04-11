@@ -6,7 +6,7 @@ services:
       - '80:80'
       - '443:443'
     environment:
-      DOMAINS: 'app.takopanman.work -> http://django:8000'
+      DOMAINS: 'www.takopanman.work -> http://django:8000'
       STAGE: 'production'
   
   django:
